@@ -1,0 +1,241 @@
+/* ==========================================================================
+   Fleecon Kenya Ltd — main.css
+   Shared site styles: variables, reset, typography, nav, footer, buttons,
+   shared utilities, base responsive.
+   Loaded by every page. Page-specific styles live in their own files.
+   ========================================================================== */
+
+/* ---------- 1. Design tokens ---------- */
+:root{
+  /* Brand colours — pulled from the logo */
+  --navy:#1f4ea8;
+  --navy-deep:#0e1f3d;
+  --navy-mid:#16356b;
+  --gold:#f2c024;
+  --gold-deep:#d9a800;
+
+  /* Neutrals */
+  --concrete:#e8e6e1;
+  --concrete-dk:#c9c6bd;
+  --ink:#0d1626;
+  --paper:#f5f3ee;
+  --cream:#faf8f3;
+  --white:#fff;
+  --muted:#8b94a8;
+
+  /* WhatsApp green — kept consistent across all CTAs */
+  --wa:#1f9d55;
+  --wa-deep:#178043;
+
+  /* Typography */
+  --display:'Oswald',sans-serif;
+  --body:'Barlow',sans-serif;
+
+  /* Layout */
+  --wrap-max:1240px;
+  --wrap-pad:28px;
+  --wrap-pad-sm:20px;
+  --nav-h:78px;
+  --nav-h-sub:72px;
+}
+
+/* ---------- 2. Reset & base ---------- */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5{
+  font-family:var(--display);
+  font-weight:700;
+  line-height:1.05;
+  text-transform:uppercase;
+  letter-spacing:-0.01em;
+}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{font-family:inherit}
+
+/* ---------- 3. Utilities ---------- */
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 var(--wrap-pad)}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  color:var(--gold-deep);
+  font-family:var(--display);font-weight:600;
+  font-size:13px;letter-spacing:4px;text-transform:uppercase;
+  margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:42px;height:2px;background:var(--gold)}
+.eyebrow.center{justify-content:center}
+.eyebrow.center::after{content:"";width:42px;height:2px;background:var(--gold)}
+.eyebrow.light{color:var(--gold)}
+
+/* Corner-mark decoration — applied to bordered cards/photos */
+.corner-frame{position:relative}
+.corner-frame::before,
+.corner-frame::after{
+  content:"";position:absolute;width:18px;height:18px;
+  border-color:var(--gold);z-index:3;
+}
+.corner-frame::before{top:10px;left:10px;border-top:2px solid;border-left:2px solid}
+.corner-frame::after{bottom:10px;right:10px;border-bottom:2px solid;border-right:2px solid}
+
+/* Section head used on every page */
+.sec-head{margin-bottom:52px}
+.sec-head.center{text-align:center;max-width:640px;margin-left:auto;margin-right:auto}
+.sec-title{font-size:clamp(34px,5vw,56px);margin-bottom:16px}
+.sec-title em{font-style:normal;color:var(--gold-deep)}
+.sec-lead{font-size:18px;color:#4a5468;max-width:60ch;font-weight:400}
+.sec-head.center .sec-lead{margin-left:auto;margin-right:auto}
+
+/* Reveal-on-scroll (logic in main.js) */
+.reveal{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- 4. Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.6px;
+  text-transform:uppercase;
+  padding:16px 30px;
+  transition:.22s;cursor:pointer;border:0;
+}
+.btn-gold{background:var(--gold);color:var(--navy-deep)}
+.btn-gold:hover{background:var(--gold-deep);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.32)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-navy{background:var(--navy-deep);color:var(--white)}
+.btn-navy:hover{background:var(--ink);transform:translateY(-2px)}
+.btn-wa{background:var(--wa);color:var(--white)}
+.btn-wa:hover{background:var(--wa-deep);transform:translateY(-2px)}
+.btn svg{transition:.2s}
+.btn-gold:hover svg,
+.btn-navy:hover svg{transform:translateX(4px)}
+
+/* ---------- 5. Header / Nav ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s}
+header.scrolled,
+header.solid{
+  background:rgba(14,31,61,.96);
+  backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 rgba(242,192,36,.18);
+}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  height:var(--nav-h);max-width:var(--wrap-max);margin:0 auto;
+  padding:0 var(--wrap-pad);
+}
+.logo{display:flex;align-items:center;gap:13px;color:var(--white)}
+.logo img{height:46px;width:auto}
+.logo-txt{
+  font-family:var(--display);font-weight:700;font-size:20px;
+  letter-spacing:.5px;line-height:.95;text-transform:uppercase;
+}
+.logo-txt span{
+  display:block;font-family:var(--body);font-weight:500;
+  font-size:9.5px;letter-spacing:3px;color:var(--gold);
+  text-transform:uppercase;margin-top:2px;
+}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{
+  color:var(--white);font-weight:500;font-size:13.5px;
+  letter-spacing:1px;text-transform:uppercase;
+  position:relative;padding:4px 0;
+}
+.nav-links a:not(.nav-cta)::after{
+  content:"";position:absolute;left:0;bottom:0;
+  width:0;height:2px;background:var(--gold);transition:.25s;
+}
+.nav-links a:not(.nav-cta):hover::after{width:100%}
+.nav-cta{
+  background:var(--gold);color:var(--navy-deep)!important;
+  padding:11px 22px;font-family:var(--display);font-weight:600;
+  letter-spacing:.5px;transition:.2s;
+}
+.nav-cta:hover{background:var(--gold-deep);transform:translateY(-1px)}
+.burger{display:none;background:none;border:0;color:var(--white);cursor:pointer;padding:4px;z-index:101}
+
+/* Mobile slide-in menu */
+.mobile-menu{
+  position:fixed;inset:0 0 0 auto;width:min(82vw,330px);
+  background:var(--navy-deep);z-index:100;
+  transform:translateX(100%);transition:.35s;
+  box-shadow:-20px 0 60px rgba(0,0,0,.45);
+  padding:34px;
+}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu .close{color:var(--concrete);background:none;border:0;cursor:pointer;margin-bottom:38px}
+.mobile-menu a{
+  display:block;font-family:var(--display);font-weight:600;
+  font-size:22px;text-transform:uppercase;color:var(--white);
+  margin-bottom:22px;transition:.2s;
+}
+.mobile-menu a:hover{color:var(--gold);padding-left:6px}
+.mobile-menu .mm-tag{
+  color:var(--gold);font-style:italic;font-size:15px;
+  border-top:1px solid rgba(242,192,36,.25);
+  padding-top:22px;margin-top:14px;
+}
+
+/* Sub-page nav variant (always solid, slightly shorter) */
+.nav-sub .nav{height:var(--nav-h-sub)}
+.nav-sub .logo img{height:42px}
+.nav-sub .logo-txt{font-size:19px}
+
+/* ---------- 6. Footer ---------- */
+footer{background:var(--ink);color:var(--concrete);padding:62px 0 26px}
+.foot-grid{
+  display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr;gap:38px;
+  margin-bottom:46px;
+}
+.foot-brand .logo{margin-bottom:16px}
+.foot-brand p{font-size:14.5px;color:var(--muted);max-width:34ch;line-height:1.7}
+.socials{display:flex;gap:11px;margin-top:18px}
+.socials a{
+  width:38px;height:38px;border:1px solid rgba(242,192,36,.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);transition:.25s;
+}
+.socials a:hover{background:rgba(242,192,36,.12);border-color:var(--gold)}
+.foot-col h5{font-size:14px;letter-spacing:2px;color:var(--gold);margin-bottom:18px}
+.foot-col a{display:block;font-size:14.5px;color:var(--concrete);margin-bottom:10px;transition:.2s}
+.foot-col a:hover{color:var(--gold);padding-left:5px}
+.hours li{display:flex;justify-content:space-between;font-size:14px;margin-bottom:10px;color:var(--muted);list-style:none}
+.hours li b{color:var(--concrete);font-weight:500}
+.hours li em{color:var(--gold);font-style:italic}
+.foot-bottom{
+  border-top:1px solid rgba(255,255,255,.08);padding-top:22px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font-size:13px;color:var(--muted);
+}
+.foot-bottom em{color:var(--gold);font-style:italic;font-weight:500}
+
+/* ---------- 7. Back-to-top (logic in main.js) ---------- */
+.totop{
+  position:fixed;bottom:24px;right:24px;
+  width:48px;height:48px;
+  border:1px solid var(--gold);background:rgba(14,31,61,.92);
+  color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:90;
+  opacity:0;pointer-events:none;transition:.3s;
+}
+.totop.show{opacity:1;pointer-events:auto}
+.totop:hover{background:var(--gold);color:var(--navy-deep)}
+
+/* ---------- 8. Responsive (shared breakpoints) ---------- */
+@media(max-width:980px){
+  .nav-links{display:none}
+  .burger{display:block}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  :root{--wrap-pad:var(--wrap-pad-sm)}
+  .foot-grid{grid-template-columns:1fr}
+}

@@ -1,0 +1,32 @@
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies (if added later)
+node_modules/
+
+# Build artifacts
+dist/
+build/
+.cache/
+
+# Environment files (if you add any later for forms/APIs)
+.env
+.env.local
+.env.*.local
+
+# Zip archives (the one we created for delivery — don't ship this in the repo)
+*.zip
+
+# Vercel
+.vercel

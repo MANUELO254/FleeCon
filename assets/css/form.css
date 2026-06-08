@@ -1,0 +1,52 @@
+/* ==========================================================================
+   form.css — contact form, success state.
+   Currently used by the landing page contact section; future contact.html
+   will reuse it.
+   ========================================================================== */
+
+.form{
+  border:1px solid rgba(242,192,36,.25);padding:34px;
+  background:rgba(255,255,255,.03);
+}
+.form-row{margin-bottom:18px}
+.form label{
+  display:block;font-size:13px;font-weight:500;letter-spacing:.5px;
+  margin-bottom:7px;color:var(--concrete);
+}
+.form input,
+.form select,
+.form textarea{
+  width:100%;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(242,192,36,.3);
+  color:var(--white);
+  padding:13px 15px;
+  font-family:var(--body);font-size:15px;
+  transition:.2s;
+}
+.form input::placeholder,
+.form textarea::placeholder{color:rgba(245,243,238,.4)}
+.form input:focus,
+.form select:focus,
+.form textarea:focus{outline:none;border-color:var(--gold)}
+.form select{cursor:pointer}
+.form select option{background:var(--navy-deep)}
+.form textarea{resize:vertical;min-height:104px}
+
+.form button{
+  width:100%;
+  background:var(--gold);color:var(--navy-deep);
+  border:0;padding:16px;
+  font-family:var(--display);font-weight:600;
+  font-size:15px;letter-spacing:.6px;text-transform:uppercase;
+  cursor:pointer;transition:.2s;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+}
+.form button:hover{background:var(--gold-deep)}
+
+.form-ok{
+  display:none;margin-top:18px;text-align:center;padding:16px;
+  border:1px solid rgba(242,192,36,.4);color:var(--gold);
+}
+.form-ok.show{display:block}
+.form-ok p{font-style:italic;margin-top:6px}
