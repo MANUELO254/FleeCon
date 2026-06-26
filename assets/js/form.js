@@ -19,9 +19,9 @@
   'use strict';
 
   /* ---- EmailJS config — fill these in after creating your EmailJS account ---- */
-  const EMAIL_SERVICE_ID  = 'YOUR_SERVICE_ID';
-  const EMAIL_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-  const EMAIL_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+  const EMAIL_SERVICE_ID  = 'service_xzmsrg8';
+  const EMAIL_TEMPLATE_ID = 'template_lcm0x5v';
+  const EMAIL_PUBLIC_KEY  = '0FO0HlHyhTwCphyNl';
   /* --------------------------------------------------------------------------- */
 
   const PHONE = '254710678147';
