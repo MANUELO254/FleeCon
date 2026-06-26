@@ -1,0 +1,8 @@
+# robots.txt — Fleecon Kenya Ltd
+# https://fleecon.vercel.app
+
+User-agent: *
+Allow: /
+
+# Point crawlers to the sitemap
+Sitemap: https://fleecon.vercel.app/sitemap.xml

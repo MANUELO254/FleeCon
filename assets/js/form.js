@@ -1,63 +1,112 @@
 /* ==========================================================================
-   form.js — Contact form handling.
+   form.js - Contact form, wired to EmailJS.
 
-   Currently shows a fake "Message received" confirmation and clears the fields.
-   When ready to wire to a real backend, replace the body of submitForm()
-   with one of:
+   Setup (one-time, 5 minutes):
+   1. Go to https://www.emailjs.com and create a free account
+   2. Add Email Service → connect to davidkiarie6@gmail.com
+      → copy the Service ID into EMAIL_SERVICE_ID below
+   3. Create Email Template with these variables:
+        {{from_name}}, {{phone}}, {{service}}, {{message}}, {{reply_to}}
+      → copy the Template ID into EMAIL_TEMPLATE_ID below
+   4. Go to Account → API Keys → copy Public Key into EMAIL_PUBLIC_KEY below
+   5. That's it. Emails land in davidkiarie6@gmail.com.
 
-     a) Formspree:    https://formspree.io  — paste your endpoint URL below
-     b) EmailJS:      https://www.emailjs.com
-     c) WhatsApp deep link — build a wa.me URL with the form values
-
-   The WhatsApp route is the simplest for a Kenyan contractor: instead of
-   sending an email, the form just opens WhatsApp with a pre-filled message.
-   Sample implementation is in handleWhatsAppSubmit() below — uncomment to use.
+   Until EmailJS is configured, the form falls back to a WhatsApp redirect
+   so it's never broken for site visitors.
    ========================================================================== */
 
 (function(){
   'use strict';
 
-  const form = document.getElementById('form');
-  if (!form) return;
+  /* ---- EmailJS config — fill these in after creating your EmailJS account ---- */
+  const EMAIL_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  const EMAIL_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  const EMAIL_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+  /* --------------------------------------------------------------------------- */
 
-  const ok = document.getElementById('formOk');
+  const PHONE = '254710678147';
+  const emailJsReady = EMAIL_SERVICE_ID !== 'YOUR_SERVICE_ID';
+
+  const form   = document.getElementById('form');
+  const formOk = document.getElementById('formOk');
+  const formErr = document.getElementById('formErr');
+  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+
+  if (!form) return;
 
   form.addEventListener('submit', e => {
     e.preventDefault();
-    submitForm();
+    if (emailJsReady){
+      sendViaEmailJS();
+    } else {
+      sendViaWhatsApp();
+    }
   });
 
-  function submitForm(){
-    // --- FAKE SUBMIT (current behaviour) ---
-    if (ok) {
-      ok.classList.add('show');
-      if (window.lucide) lucide.createIcons();
+  /* EmailJS send */
+  function sendViaEmailJS(){
+    if (!window.emailjs){
+      sendViaWhatsApp();
+      return;
     }
-    form.querySelectorAll('input, select, textarea').forEach(f => f.value = '');
-    setTimeout(() => ok && ok.classList.remove('show'), 4500);
+    submitBtn && setLoading(true);
 
-    // --- WHATSAPP SUBMIT (uncomment to use instead) ---
-    // handleWhatsAppSubmit();
+    const params = {
+      from_name: form.querySelector('[name="name"]')?.value || '',
+      phone:     form.querySelector('[name="phone"]')?.value || '',
+      service:   form.querySelector('[name="service"]')?.value || '',
+      message:   form.querySelector('[name="message"]')?.value || '',
+      reply_to:  form.querySelector('[name="email"]')?.value || 'no-email-provided',
+    };
+
+    emailjs.send(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, params, EMAIL_PUBLIC_KEY)
+      .then(() => {
+        showSuccess();
+        form.reset();
+      })
+      .catch(() => {
+        /* Fallback to WhatsApp if EmailJS fails */
+        sendViaWhatsApp();
+      })
+      .finally(() => setLoading(false));
   }
 
-  // Optional: send the form contents straight to WhatsApp.
-  // Replace the phone number with the client's actual one (no +, no spaces).
-  function handleWhatsAppSubmit(){
+  /* WhatsApp fallback */
+  function sendViaWhatsApp(){
     const name    = form.querySelector('[name="name"]')?.value || '';
     const phone   = form.querySelector('[name="phone"]')?.value || '';
     const service = form.querySelector('[name="service"]')?.value || '';
     const message = form.querySelector('[name="message"]')?.value || '';
 
     const text = encodeURIComponent(
-      `Hi Fleecon, I'd like a quote.\n\n` +
+      `Hi Fleecon, I'd like to discuss a project.\n\n` +
       `Name: ${name}\n` +
       `Phone: ${phone}\n` +
       `Service: ${service}\n\n` +
       `${message}`
     );
 
-    const phoneNumber = '254700000000'; // <-- replace with client's WhatsApp number
-    window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
+    window.open(`https://wa.me/${PHONE}?text=${text}`, '_blank');
+    showSuccess();
+    form.reset();
+  }
+
+  function showSuccess(){
+    if (formOk){
+      formOk.classList.add('show');
+      if (window.lucide) lucide.createIcons();
+      setTimeout(() => formOk.classList.remove('show'), 5000);
+    }
+  }
+
+  function setLoading(on){
+    if (!submitBtn) return;
+    submitBtn.disabled = on;
+    submitBtn.style.opacity = on ? '.65' : '1';
+    submitBtn.innerHTML = on
+      ? 'Sending...'
+      : 'Send Message <i data-lucide="send" style="width:16px;height:16px"></i>';
+    if (window.lucide) lucide.createIcons();
   }
 
 })();

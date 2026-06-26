@@ -1,0 +1,151 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://fleecon.vercel.app/#business",
+      "name": "Fleecon Kenya Ltd",
+      "alternateName": "Fleecon Kenya",
+      "description": "Construction, renovation and finishing contractors based in Nairobi, Kenya. New builds, renovations, roofing, finishing and project management across all 47 counties.",
+      "url": "https://fleecon.vercel.app",
+      "logo": "https://fleecon.vercel.app/assets/images/logo/logo.png",
+      "image": "https://fleecon.vercel.app/assets/images/logo/logo.png",
+      "telephone": "+254710678147",
+      "email": "davidkiarie6@gmail.com",
+      "foundingDate": "2018",
+      "slogan": "Filling The Gaps",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nairobi",
+        "addressCountry": "KE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -1.286389,
+        "longitude": 36.817223
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Kenya"
+        },
+        {
+          "@type": "City",
+          "name": "Nairobi"
+        },
+        {
+          "@type": "City",
+          "name": "Kiambu"
+        },
+        {
+          "@type": "City",
+          "name": "Naivasha"
+        },
+        {
+          "@type": "City",
+          "name": "Nakuru"
+        },
+        {
+          "@type": "City",
+          "name": "Mombasa"
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "07:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "14:00"
+        }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+254710678147",
+          "contactType": "customer service",
+          "availableLanguage": ["English","Swahili"],
+          "contactOption": "TollFree"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com",
+        "https://www.instagram.com"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Construction Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "New Builds",
+              "description": "Residential and commercial new build construction across Kenya.",
+              "url": "https://fleecon.vercel.app/services/new-builds"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Renovations",
+              "description": "Home and commercial renovation and remodelling services.",
+              "url": "https://fleecon.vercel.app/services/renovations"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Finishing",
+              "description": "Plastering, tiling, painting and interior finishing services.",
+              "url": "https://fleecon.vercel.app/services/finishing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Roofing",
+              "description": "Roof installation, replacement and repair across Kenya.",
+              "url": "https://fleecon.vercel.app/services/roofing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Project Management",
+              "description": "End-to-end construction project management and trade coordination.",
+              "url": "https://fleecon.vercel.app/services/project-management"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Consultation",
+              "description": "Honest construction advice, site assessments and fair estimates.",
+              "url": "https://fleecon.vercel.app/services/consultation"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://fleecon.vercel.app/#website",
+      "url": "https://fleecon.vercel.app",
+      "name": "Fleecon Kenya Ltd",
+      "publisher": {
+        "@id": "https://fleecon.vercel.app/#business"
+      }
+    }
+  ]
+}

@@ -5,16 +5,13 @@
    Loaded by every page. Page-specific styles live in their own files.
    ========================================================================== */
 
-/* ---------- 1. Design tokens ---------- */
+/* 1. Design tokens */
 :root{
-  /* Brand colours — pulled from the logo */
   --navy:#1f4ea8;
   --navy-deep:#0e1f3d;
   --navy-mid:#16356b;
   --gold:#f2c024;
   --gold-deep:#d9a800;
-
-  /* Neutrals */
   --concrete:#e8e6e1;
   --concrete-dk:#c9c6bd;
   --ink:#0d1626;
@@ -22,16 +19,10 @@
   --cream:#faf8f3;
   --white:#fff;
   --muted:#8b94a8;
-
-  /* WhatsApp green — kept consistent across all CTAs */
   --wa:#1f9d55;
   --wa-deep:#178043;
-
-  /* Typography */
   --display:'Oswald',sans-serif;
   --body:'Barlow',sans-serif;
-
-  /* Layout */
   --wrap-max:1240px;
   --wrap-pad:28px;
   --wrap-pad-sm:20px;
@@ -39,44 +30,34 @@
   --nav-h-sub:72px;
 }
 
-/* ---------- 2. Reset & base ---------- */
+/* 2. Reset & base */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  font-family:var(--body);
-  color:var(--ink);
-  background:var(--cream);
-  line-height:1.6;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
+  font-family:var(--body);color:var(--ink);background:var(--cream);
+  line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 h1,h2,h3,h4,h5{
-  font-family:var(--display);
-  font-weight:700;
-  line-height:1.05;
-  text-transform:uppercase;
-  letter-spacing:-0.01em;
+  font-family:var(--display);font-weight:700;
+  line-height:1.05;text-transform:uppercase;letter-spacing:-0.01em;
 }
 a{text-decoration:none;color:inherit}
 img{display:block;max-width:100%}
 button{font-family:inherit}
 
-/* ---------- 3. Utilities ---------- */
+/* 3. Utilities */
 .wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 var(--wrap-pad)}
 
 .eyebrow{
   display:inline-flex;align-items:center;gap:14px;
-  color:var(--gold-deep);
-  font-family:var(--display);font-weight:600;
-  font-size:13px;letter-spacing:4px;text-transform:uppercase;
-  margin-bottom:18px;
+  color:var(--gold-deep);font-family:var(--display);font-weight:600;
+  font-size:13px;letter-spacing:4px;text-transform:uppercase;margin-bottom:18px;
 }
 .eyebrow::before{content:"";width:42px;height:2px;background:var(--gold)}
 .eyebrow.center{justify-content:center}
 .eyebrow.center::after{content:"";width:42px;height:2px;background:var(--gold)}
 .eyebrow.light{color:var(--gold)}
 
-/* Corner-mark decoration — applied to bordered cards/photos */
 .corner-frame{position:relative}
 .corner-frame::before,
 .corner-frame::after{
@@ -86,7 +67,6 @@ button{font-family:inherit}
 .corner-frame::before{top:10px;left:10px;border-top:2px solid;border-left:2px solid}
 .corner-frame::after{bottom:10px;right:10px;border-bottom:2px solid;border-right:2px solid}
 
-/* Section head used on every page */
 .sec-head{margin-bottom:52px}
 .sec-head.center{text-align:center;max-width:640px;margin-left:auto;margin-right:auto}
 .sec-title{font-size:clamp(34px,5vw,56px);margin-bottom:16px}
@@ -94,17 +74,15 @@ button{font-family:inherit}
 .sec-lead{font-size:18px;color:#4a5468;max-width:60ch;font-weight:400}
 .sec-head.center .sec-lead{margin-left:auto;margin-right:auto}
 
-/* Reveal-on-scroll (logic in main.js) */
 .reveal{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* ---------- 4. Buttons ---------- */
+/* 4. Buttons */
 .btn{
   display:inline-flex;align-items:center;gap:10px;
-  font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.6px;
-  text-transform:uppercase;
-  padding:16px 30px;
-  transition:.22s;cursor:pointer;border:0;
+  font-family:var(--display);font-weight:600;font-size:15px;
+  letter-spacing:.6px;text-transform:uppercase;
+  padding:16px 30px;transition:.22s;cursor:pointer;border:0;
 }
 .btn-gold{background:var(--gold);color:var(--navy-deep)}
 .btn-gold:hover{background:var(--gold-deep);transform:translateY(-2px)}
@@ -115,10 +93,9 @@ button{font-family:inherit}
 .btn-wa{background:var(--wa);color:var(--white)}
 .btn-wa:hover{background:var(--wa-deep);transform:translateY(-2px)}
 .btn svg{transition:.2s}
-.btn-gold:hover svg,
-.btn-navy:hover svg{transform:translateX(4px)}
+.btn-gold:hover svg,.btn-navy:hover svg{transform:translateX(4px)}
 
-/* ---------- 5. Header / Nav ---------- */
+/* 5. Header / Nav */
 header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s}
 header.scrolled,
 header.solid{
@@ -128,8 +105,8 @@ header.solid{
 }
 .nav{
   display:flex;align-items:center;justify-content:space-between;
-  height:var(--nav-h);max-width:var(--wrap-max);margin:0 auto;
-  padding:0 var(--wrap-pad);
+  height:var(--nav-h);max-width:var(--wrap-max);
+  margin:0 auto;padding:0 var(--wrap-pad);
 }
 .logo{display:flex;align-items:center;gap:13px;color:var(--white)}
 .logo img{height:46px;width:auto}
@@ -161,13 +138,11 @@ header.solid{
 .nav-cta:hover{background:var(--gold-deep);transform:translateY(-1px)}
 .burger{display:none;background:none;border:0;color:var(--white);cursor:pointer;padding:4px;z-index:101}
 
-/* Mobile slide-in menu */
 .mobile-menu{
   position:fixed;inset:0 0 0 auto;width:min(82vw,330px);
   background:var(--navy-deep);z-index:100;
   transform:translateX(100%);transition:.35s;
-  box-shadow:-20px 0 60px rgba(0,0,0,.45);
-  padding:34px;
+  box-shadow:-20px 0 60px rgba(0,0,0,.45);padding:34px;
 }
 .mobile-menu.open{transform:translateX(0)}
 .mobile-menu .close{color:var(--concrete);background:none;border:0;cursor:pointer;margin-bottom:38px}
@@ -183,16 +158,11 @@ header.solid{
   padding-top:22px;margin-top:14px;
 }
 
-/* Sub-page nav variant (always solid, slightly shorter) */
-.nav-sub .nav{height:var(--nav-h-sub)}
-.nav-sub .logo img{height:42px}
-.nav-sub .logo-txt{font-size:19px}
-
-/* ---------- 6. Footer ---------- */
+/* 6. Footer */
 footer{background:var(--ink);color:var(--concrete);padding:62px 0 26px}
 .foot-grid{
-  display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr;gap:38px;
-  margin-bottom:46px;
+  display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr;
+  gap:38px;margin-bottom:46px;
 }
 .foot-brand .logo{margin-bottom:16px}
 .foot-brand p{font-size:14.5px;color:var(--muted);max-width:34ch;line-height:1.7}
@@ -216,7 +186,7 @@ footer{background:var(--ink);color:var(--concrete);padding:62px 0 26px}
 }
 .foot-bottom em{color:var(--gold);font-style:italic;font-weight:500}
 
-/* ---------- 7. Back-to-top (logic in main.js) ---------- */
+/* 7. Back-to-top */
 .totop{
   position:fixed;bottom:24px;right:24px;
   width:48px;height:48px;
@@ -229,7 +199,37 @@ footer{background:var(--ink);color:var(--concrete);padding:62px 0 26px}
 .totop.show{opacity:1;pointer-events:auto}
 .totop:hover{background:var(--gold);color:var(--navy-deep)}
 
-/* ---------- 8. Responsive (shared breakpoints) ---------- */
+/* 8. Floating WhatsApp button */
+.wa-float{
+  position:fixed;bottom:86px;right:24px;
+  width:54px;height:54px;border-radius:50%;
+  background:var(--wa);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);z-index:89;
+  box-shadow:0 4px 18px rgba(31,157,85,.45);
+  transition:.3s;
+  border:0;cursor:pointer;
+}
+.wa-float:hover{
+  background:var(--wa-deep);
+  transform:scale(1.1);
+  box-shadow:0 6px 24px rgba(31,157,85,.55);
+}
+.wa-float-tooltip{
+  position:absolute;right:64px;
+  background:var(--ink);color:var(--white);
+  font-family:var(--body);font-size:13px;font-weight:500;
+  padding:7px 14px;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:.2s;
+}
+.wa-float-tooltip::after{
+  content:"";position:absolute;right:-6px;top:50%;transform:translateY(-50%);
+  border:6px solid transparent;border-right:0;
+  border-left-color:var(--ink);
+}
+.wa-float:hover .wa-float-tooltip{opacity:1}
+
+/* 9. Shared responsive */
 @media(max-width:980px){
   .nav-links{display:none}
   .burger{display:block}
@@ -238,4 +238,6 @@ footer{background:var(--ink);color:var(--concrete);padding:62px 0 26px}
 @media(max-width:560px){
   :root{--wrap-pad:var(--wrap-pad-sm)}
   .foot-grid{grid-template-columns:1fr}
+  .wa-float{bottom:82px;right:16px;width:48px;height:48px}
+  .totop{right:16px;bottom:22px}
 }
